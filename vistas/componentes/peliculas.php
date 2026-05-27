@@ -121,9 +121,13 @@
                               </div>
 
                               <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary">Guardar</button>
+                                  <button type="submit" class="btn btn-primary">Guardar</button>
                                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                               </div>
+                              <?php
+                                $objPelicula  = new ControladorPersona();
+                                $objPelicula->ctrlGuardarPersona();
+                                ?>
                               </form>
                           </div>
                       </div>

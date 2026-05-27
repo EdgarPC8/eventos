@@ -1,8 +1,13 @@
 <?php
 class ControladorPersona{
     public function ctrlGuardarPersona (){
+        
+        
+        
         if (isset($_POST ['crearPelicula']) && isset($_POST ['crearGenero']) && isset($_POST ['crearLenguaje']) &&
          isset($_POST ['crearActor']) && isset($_POST ['crearAnio']) && isset($_POST ['crearDoblado'])){
+
+            
             $data = array(
                 "crearPelicula" => $_POST ['crearPelicula'],
                 "crearGenero" => $_POST ['crearGenero'],
@@ -11,18 +16,20 @@ class ControladorPersona{
                 "crearAnio" => $_POST ['crearAnio'],
                 "crearDoblado" => $_POST ['crearDoblado']
             );
+            
             $res = ModeloPersona::guardarPersona($data);
+            echo $res;
 
             if ($res == "OK"){
                 echo '<script>
                         Swal.fire({
                             icon:"success",
-                            title: "¡Datos de Persona Guardados Correctamente...!",
+                            title: "¡Datos de Peliculas Guardados Correctamente...!",
                             showConfirmButton: true,
                             confirmButtonText: "Cerrar"
                         }).then(function(result){
                             if(result.value){
-                                window.location= "personas";
+                                window.location= "peliculas";
                             }
                         })
                       </script>
@@ -31,12 +38,12 @@ class ControladorPersona{
                 echo '<script>
                         Swal.fire({
                             icon:"error",
-                            title: "¡Datos de persona no se pueden guardar!",
+                            title: "¡Datos de peliculas no se pueden guardar!",
                             showConfirmButton: true,
                             confirmButtonText: "Cerrar"
                         }).then(function(result){
                             if(result.value){
-                                window.location= "personas";
+                                window.location= "peliculas";
                             }
                         })
                       </script>
