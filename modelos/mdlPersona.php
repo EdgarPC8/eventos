@@ -22,7 +22,9 @@ class ModeloPersona {
     }
 
     public static function traerDatos (){
-        $stm = conexion::conectar()->prepare("SELECT * FROM peliculas");
+        $stm = conexion::conectar()->prepare("SELECT peliculas.*, genero_peliculas.nombres AS genero 
+                                              FROM peliculas 
+                                              INNER JOIN genero_peliculas ON peliculas.id_genero= genero_peliculas.id_genero");
         $stm->execute();
         return $stm->fetchAll();
       

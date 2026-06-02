@@ -53,10 +53,17 @@
                                                   <div class="input-group mb-3">
                                                       <select name="crearGenero" id="crearGenero" class="form-control" required>
                                                           <option value="0">[Seleccione un género]</option>
-                                                          <option value="Terror">Terror</option>
-                                                          <option value="Drama">Drama</option>
-                                                          <option value="Suspenso">Suspenso</option>
-                                                          <option value="Animados">Animados</option>
+                                                          <?php
+                                                            $objGeneroPeliculas = new ControladorGeneroPeliculas();
+                                                            $dataGeneroPelucilas = $objGeneroPeliculas->cargarGeneroPelulas();
+                                                            
+                                                            foreach ($dataGeneroPelucilas as $key => $value) {
+                                                                
+                                                            ?>
+
+                                                              <option value="<?php echo $value["id_genero"];  ?>"><?php echo $value["nombres"];  ?></option>
+
+                                                          <?php } ?>
                                                       </select>
 
                                                       <div class="input-group-append">
@@ -148,31 +155,31 @@
                           </tr>
                       </thead>
                       <tbody>
-                        <?php
-                        $dataPeliculas = $objPelicula->ctrlCargarDatos();
-                        foreach($dataPeliculas as $key=>$value){
-                        ?>
-                          <tr>
-                              <td><?php echo $value ["id_pelicula"];  ?></td>
-                              <td><?php echo $value ["nombre"];  ?></td>
-                              <td><?php echo $value ["genero"];  ?></td>
-                              <td><?php echo $value ["lenguaje"];  ?></td>
-                              <td><?php echo $value ["actor"];  ?></td>
-                              <td><?php echo $value ["anio"];  ?></td>
-                              <td><?php echo $value ["doblada"];  ?></td>
-                              <td>
-                                <div class="btn-group">
-                                    <button class="btn btn-warning"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-danger"><i class="fas fa-trash-alt" style="color: rgb(0, 0, 0);"></i></button>
-                                </div>
-                              </td>
-                          </tr>
+                          <?php
+                            $dataPeliculas = $objPelicula->ctrlCargarDatos();
+                            foreach ($dataPeliculas as $key => $value) {
+                            ?>
+                              <tr>
+                                  <td><?php echo $value["id_pelicula"];  ?></td>
+                                  <td><?php echo $value["nombre"];  ?></td>
+                                  <td><?php echo $value["genero"];  ?></td>
+                                  <td><?php echo $value["lenguaje"];  ?></td>
+                                  <td><?php echo $value["actor"];  ?></td>
+                                  <td><?php echo $value["anio"];  ?></td>
+                                  <td><?php echo $value["doblada"];  ?></td>
+                                  <td>
+                                      <div class="btn-group">
+                                          <button class="btn btn-warning"><i class="fas fa-edit"></i></button>
+                                          <button class="btn btn-danger"><i class="fas fa-trash-alt" style="color: rgb(0, 0, 0);"></i></button>
+                                      </div>
+                                  </td>
+                              </tr>
                           <?php }  ?>
                       </tbody>
                       <tfoot>
                           <tr>
                               <th>ID</th>
-                              <th>NOMBRE/th>
+                              <th>NOMBRE</th>
                               <th>GÉNERO</th>
                               <th>LENGUAJE</th>
                               <th>ACTOR</th>
