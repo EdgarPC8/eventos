@@ -237,13 +237,14 @@
                                       </div>
 
                               </div>
+                              <input type="hidden" name="id_pelicula" id="id_pelicula">
 
                               <div class="modal-footer">
                                   <button type="submit" class="btn btn-primary">Editar</button>
                                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                               </div>
                               <?php
-                                
+                                $objPelicula->ctrlActualizarDatos();
                                 ?>
                               </form>
                           </div>
@@ -280,7 +281,7 @@
                                   <td>
                                       <div class="btn-group">
                                           <button class="btn btn-warning"><i class="fas fa-edit editarPeliculaTabla" data-toggle="modal" data-target="#myModalEditar" id_peliculas= "<?php echo $value["id_pelicula"]; ?>"></i></button>
-                                          <button class="btn btn-danger"><i class="fas fa-trash-alt" style="color: rgb(0, 0, 0);"></i></button>
+                                          <button class="btn btn-danger"><i class="fas fa-trash-alt eliminarPeliculaTabla" style="color: rgb(0, 0, 0);" id_peliculas= "<?php echo $value["id_pelicula"]; ?>"></i></button>
                                       </div>
                                   </td>
                               </tr>

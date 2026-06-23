@@ -2,10 +2,11 @@
 require_once "conexion.php";
 class ModeloPersona
 {
+    #Función par guardar datos
     public static function guardarPersona($data)
     {
 
-        $stm = conexion::conectar()->prepare("INSERT INTO peliculas (nombre, genero, lenguaje, actor, anio, doblada)
+        $stm = conexion::conectar()->prepare("INSERT INTO peliculas (nombre, id_genero, lenguaje, actor, anio, doblada)
                                                 VALUES (:crearPelicula, :crearGenero, :crearLenguaje, :crearActor, :crearAnio, :crearDoblado)");
         $stm->bindParam(":crearPelicula", $data["crearPelicula"], PDO::PARAM_STR);
         $stm->bindParam(":crearGenero", $data["crearGenero"], PDO::PARAM_STR);
@@ -20,6 +21,7 @@ class ModeloPersona
         }
     }
 
+    #Función para cargar los datos
     public static function traerDatos($parametro, $id)
     {
         if ($parametro) {
@@ -33,7 +35,39 @@ class ModeloPersona
             $stm->bindParam(":id_pelicula", $id, PDO::PARAM_INT);
             $stm->execute();
             return $stm->fetch();
-            
+        }
+    }
+
+    #Función para actualizar datos
+    public static function editarDatos($data)
+    {
+
+        $stm = conexion::conectar()->prepare("UPDATE peliculas SET nombre=:nombre, id_genero=:id_genero, 
+                                            lenguaje=:lenguaje, actor=:actor, anio=:anio, doblada=:doblada
+                                            WHERE id_pelicula=:id_pelicula");
+        $stm->bindParam(":nombre", $data["nombre"], PDO::PARAM_STR);
+        $stm->bindParam(":id_genero", $data["id_genero"], PDO::PARAM_INT);
+        $stm->bindParam(":lenguaje", $data["lenguaje"], PDO::PARAM_STR);
+        $stm->bindParam(":actor", $data["actor"], PDO::PARAM_STR);
+        $stm->bindParam(":anio", $data["anio"], PDO::PARAM_STR);
+        $stm->bindParam(":doblada", $data["doblada"], PDO::PARAM_STR);
+        $stm->bindParam(":id_pelicula", $data["id_peliculas"], PDO::PARAM_INT);
+        if ($stm->execute()) {
+            return "OK";
+        } else {
+            return "Error";
+        }
+    }
+
+    #Función para eliminar datos
+    public static function EliminarDatos($id)
+    {
+        $stm = conexion::conectar()->prepare("DELETE FROM peliculas WHERE id_pelicula=:id");
+        $stm->bindParam(":id", $id, PDO::PARAM_INT);
+        if ($stm->execute()) {
+            return 1;
+        } else {
+            return 0;
         }
     }
 }

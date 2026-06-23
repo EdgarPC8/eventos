@@ -11,6 +11,12 @@ class peliculasAjax {
         echo json_encode($respuesta);
     }
 
+    public function eliminarDatos(){
+        $id = $this->id_peliculas;
+        $respuesta = ControladorPersona::ctrlEliminar($id);
+        echo json_encode($respuesta);
+    }
+
 }
 if (isset($_POST["id_peliculas"])){
     $objPeliculasAjax = new peliculasAjax();
@@ -18,6 +24,9 @@ if (isset($_POST["id_peliculas"])){
     switch($_POST['operacion']){
         case 'editar': 
             $objPeliculasAjax->traerDatos();
+            break;
+        case 'eliminar':
+            $objPeliculasAjax->eliminarDatos();
             break;
     }
 }
