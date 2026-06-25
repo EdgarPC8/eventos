@@ -70,4 +70,11 @@ class ModeloPersona
             return 0;
         }
     }
+
+    #Función para contar los registro de la tabla
+    public static function contarPeliculas(){
+        $stm = conexion::conectar()->prepare("SELECT COUNT(*) AS numeroPeliculas FROM peliculas");
+        $stm->execute();
+        return $stm->fetch();
+    }
 }

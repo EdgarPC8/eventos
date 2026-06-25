@@ -115,4 +115,10 @@ class ControladorPersona{
 
     }
 
+    #Función para contar los resgistros
+    public static function ctrlContarPeliculas(){
+        $res = ModeloPersona::contarPeliculas();
+        return $res;
+    }
+
 }
