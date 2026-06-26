@@ -43,7 +43,8 @@ if (isset($_SESSION["login"]) && ($_SESSION["login"]=="activo")){
   if (isset($_GET["enlace"])){
     if ($_GET["enlace"]== "inicio" ||
         $_GET["enlace"]== "salir" ||
-        $_GET["enlace"]== "peliculas")
+        $_GET["enlace"]== "peliculas" ||
+        $_GET["enlace"]== "usuarios")
       {
         include "vistas/componentes/".$_GET["enlace"].".php";
       }
@@ -95,6 +96,9 @@ else{
 
  <!-- Archivos propios-->
 <script src="vistas/dist/js/peliculas.js"></script>
+<?php if (isset($_GET["enlace"]) && $_GET["enlace"] == "usuarios") { ?>
+<script src="vistas/dist/js/usuarios.js"></script>
+<?php } ?>
 
 
 </body>
